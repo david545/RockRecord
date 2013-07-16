@@ -1,0 +1,59 @@
+﻿@using RockRecord.Models
+@model RockRecord.Models.OrderHeader
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    @Html.DisplayNameFor(model=>model.Id):@Html.DisplayFor(model=>model.Id)
+    (@Model.OrderStatus.Name)
+</h2>
+
+<div>
+    
+     <fieldset>
+         <legend>訂單資訊</legend>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.OrderDate):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.ContactName):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ContactName)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Address):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Address)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.ContactPhone):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ContactPhone)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Memo):
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Memo)
+        </div>
+
+    </fieldset>
+
+    <div>
+        <h3>您訂購的商品</h3>
+        @Html.Partial("OrderProductItems", Model.OrderDetails.ToList().ConvertAll(order => (IProduct)order))
+    </div>
+</div>
+

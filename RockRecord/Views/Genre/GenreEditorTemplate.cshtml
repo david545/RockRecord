@@ -1,0 +1,6 @@
+﻿@model RockRecord.Models.Genre
+
+<div>
+    @Html.ValidationMessageFor(model=>model.Name)
+</div>
+@Html.TextBoxFor(model=>model.Name,new{@class="singal-textBox"})

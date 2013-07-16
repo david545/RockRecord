@@ -1,0 +1,16 @@
+﻿@using RockRecord.Helper;
+@model RockRecord.Models.Review
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>您確定您要刪除這篇評論?</h3>
+<div>
+    @Html.Partial("ReviewDetail",Model)
+</div>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <input type="submit" value="刪除" /> 
+}

@@ -1,0 +1,40 @@
+﻿@model RockRecord.Models.Artist
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    var selectList=ViewData["selectList"] as SelectList;
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            音樂類型:
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("category", selectList);
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,29 @@
+﻿@using RockRecord.Helper
+@model RockRecord.Models.Artist
+
+@{
+    ViewBag.Title = "建立藝術家";
+}
+<div>
+    @Html.ActionLink("回到藝術家管理","Artist", "Manage")
+</div>
+
+<h2>
+    建立新藝術家
+</h2>
+
+@using (Html.BeginForm("Create", "Artist", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.Partial("ArtistEditorTemplate",Model)
+
+    <input type="submit" value="建立" class="singal-button" />
+
+}
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

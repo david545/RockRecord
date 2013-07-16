@@ -1,0 +1,29 @@
+﻿
+.menu li.selected * {
+    color: white;
+}
+
+
+.typeLabel {
+    display: inline-block;
+    padding: 5px;
+    background-color: red;
+    font-size: 90%;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#searchHeader {
+    margin-bottom: 50px;
+}
+
+
+
+.keyWord {
+    font-size: 130%;
+    font-weight: bold;
+    color: red;
+}

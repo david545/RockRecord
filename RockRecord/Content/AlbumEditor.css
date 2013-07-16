@@ -1,0 +1,78 @@
+﻿#albumEditor {
+    padding:10px 10px 10px 20px;
+}
+
+#albumEditor .editor-field {
+    margin-bottom: 30px;
+}
+
+#albumEditor input[type="text"],input[type="datetime"],input[type="number"] {
+    width: 400px;
+    height: 25px;
+
+}
+
+#albumEditor select {
+    width: 400px;
+    height: 25px;
+}
+
+#albumEditor textarea {
+    padding: 10px;
+    width: 500px;
+    height: 350px;
+    resize: none;
+}
+
+
+.albumCoverField {
+    height: 300px;
+    margin-bottom: 40px;
+}
+
+.albumCoverField .left {
+    float: left;
+}
+
+.albumCoverField .right {
+    padding-top: 150px;
+    margin-left: 330px;
+}
+
+#songEditTable {
+    width: 80%;
+    text-align:left;
+    border-spacing: 0;
+    border:1px solid  #D3D3D3;
+
+}
+
+#songEditTable thead {
+    background-color: #D3D3D3;
+}
+
+#songEditTable td,th {
+    border:1px solid  #D3D3D3;
+    border-right: none;
+    border-top: none;
+    padding:5px;
+}
+
+#songEditTable tr:last-child td {
+   border-bottom: none;
+           
+}
+
+#songEditTable td input.empty {
+   color: gray;
+}
+
+#songEditTable td input[type="text"] {
+   padding: 2px;
+   width: 90%;
+   border:1px solid  #D3D3D3;
+}
+
+#songNum {
+   width: 20%;
+}

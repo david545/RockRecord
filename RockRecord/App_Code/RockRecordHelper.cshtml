@@ -1,0 +1,13 @@
+﻿@using RockRecord.Models
+
+
+
+@helper secondToMinite(int seconds)
+{
+    var min = seconds / 60;
+    var sec = seconds % 60;
+    string len = min.ToString().PadLeft(2, '0') + ":" + sec.ToString().PadLeft(2, '0');
+    @len
+
+}
+

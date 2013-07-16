@@ -1,0 +1,21 @@
+﻿@using RockRecord.Helper
+@model RockRecord.Models.Member
+
+<h3>@(Model.Name)的個人資料</h3>
+
+<div class="display-field">
+    @Html.UserPhoto(Model.Id, 75)
+</div>
+
+<div class="display-field">
+    <span class="label">@Html.DisplayNameFor(model => model.Name):</span>
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+
+<div class="display-field">
+    <span class="label">@Html.DisplayNameFor(model => model.Biography)</span><br />
+    @Html.DisplayFor(model => model.Biography)
+</div>
+
+

@@ -1,0 +1,55 @@
+﻿@model RockRecord.Models.MemberLoginView
+
+@{
+    ViewBag.Title = "會員登入";
+}
+
+<div id="login-form" class="account-form">
+    <img src="/Content/rockrocrd-middle.png" />
+    <h3>會員登入</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="editor">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.email)<br />
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.password)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.password)<br />
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+            <div class="display-block">
+                <input type="submit" value="登入" class="important-button" />
+            </div>
+        </div>
+    }
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if(TempData["LastTempMessage"]!=null)
+    {
+        <script>
+            alert('@HttpUtility.JavaScriptStringEncode(TempData["LastTempMessage"].ToString())');
+        </script>
+    }
+    <script>
+        $(function () {
+            $("#@Html.IdFor(model=>model.email)")
+            .rules("add", { messages: { email: "請輸入Email地址" } });
+        });
+
+
+    </script>
+}

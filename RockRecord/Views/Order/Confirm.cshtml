@@ -1,0 +1,25 @@
+﻿@using RockRecord.Models
+@model RockRecord.Models.ViewModel.OrderConfirmViewModel
+@{
+    ViewBag.Title = "確認訂單";
+}
+@Html.Partial("OrderNavigator")
+<h2>確認訂單</h2>
+
+<div id="order-productItems" class="display-block">
+    <h3>您訂購的商品</h3>
+    @Html.Partial("OrderProductItems",Model.CartItems.ToList().ConvertAll(order=>(IProduct)order))
+</div>
+
+<div id="order-orderHeaderDetail" class="display-block">
+    <h3>您的訂單資訊</h3>
+     @using(Html.BeginForm("Finish","Order",FormMethod.Post))
+    {
+        @Html.Partial("OrderHeaderDetail",Model.Order)
+        <div class="checkout-button-bottom">
+            <div class="display-block checkout-button-bottom-right">
+                <input type="submit" value="確認送出" class="important-button confirm-button" />
+            </div>
+        </div>
+    }
+</div>

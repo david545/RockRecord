@@ -1,0 +1,65 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using RockRecord.Helper
+@model IPagedList<RockRecord.Models.Review>
+<script type="text/javascript">
+    $(function () {
+        $('.review-delete-button')
+            .ajaxDialog(
+                '@Url.Action("Delete","Review")',
+                function () { return 'id=' + $(this).attr('data-reviewId'); },
+                function (respone, state,xhr) {
+                    location.href=location.href;
+                },
+                '確定要移除對該唱片的評論?'
+         );
+
+    });
+</script>
+@if (Model.Count > 0)
+{
+    <div class="list">
+        @foreach (var review in Model)
+        {
+            <div class="list-item userReviewList-item">
+                <div class="list-item-left">
+                    @Html.AlbumCover(review.Album.Id, 160, new { @class = "list-img" })
+                </div>
+                <div class="list-item-right">
+                    @Html.AlbumTitle(review.Album)
+                    <span>發表於@(review.ReviewDate.ToString("yyyy/MM/dd"))</span>
+                    @if (User.Identity.IsAuthenticated &&
+                    User.Identity.Name == review.Member.Email)
+                    {
+                    
+                        @Html.ActionLink("更改", "Edit", "Review", new { id = review.Id }, null)
+                        @:|
+                        @Html.ActionLink("移除", "Delete", "Review", new { id = review.Id },
+                       new { @class = "review-delete-button", data_reviewId = review.Id })
+                    }
+
+                    <br />
+                    @Html.DisplayFor(model => review.Rating)
+                    <div class="reviewList-review">
+                        <p>
+                            @review.Comment
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            
+    }
+    </div>
+   @Html.Partial("Pager",Model)
+}
+else
+{
+    <p class="notContent">
+        沒有任何相關的評論
+    </p>
+}
+
+
+
+@Html.Partial("Dialog")
