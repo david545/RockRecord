@@ -1,8 +1,0 @@
-﻿@model SelectList
-<script type="text/javascript">
-    $(function () {
-        $('select#orderStatusFilter').selectRedirect('status');
-    });
-</script>
-<label for="filter" class="label">過濾訂單:</label>
- @Html.DropDownList("orderStatusFilter",Model)

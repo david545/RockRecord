@@ -1,9 +1,0 @@
-﻿@using RockRecord.Helper
-@model List<RockRecord.Models.Genre>
-
-<ul>
-    @foreach (var item in Model)
-    {
-        @Html.MenuItem(item.Name,"Albums","Genre","id",item.Id,new{id=item.Id},null)
-    }
-</ul>
