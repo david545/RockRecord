@@ -1,0 +1,16 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<RockRecord.Models.Review>
+@{
+    ViewBag.Title = "ReviewHistory";
+}
+
+<h2 class="headerTitle">我的評論</h2>
+<div class="hasMenuContent">
+    <div class="menu">
+        @Html.Partial("AccountMenu")
+    </div>
+    <div class="content">
+        @Html.Partial("UserReviewList",Model)
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@using RockRecord.Helper
+@model List<RockRecord.Models.IProduct>
+
+<div class="errorMessageContent"></div>
+@if(Model.Count>0){
+<table id="cartList">
+    <thead>
+        <tr>
+            <th colspan="2">
+                @Html.DisplayNameFor(model => model[0].Album)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Price)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int total = 0;}
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            total += Model[i].Price;
+            <tr class="cartList-item">
+                @Html.HiddenFor(model => Model[i].Id)
+                <td class="cart-item-cover">
+                    @Html.AlbumCover(Model[i].Album.Id, 120)
+                </td>
+                <td class="cart-item-title">
+                   @Html.AlbumTitle(Model[i].Album)
+                </td>
+                <td class="cart-item-amount">
+                    @Html.DisplayFor(model => Model[i].Amount)
+                </td>
+                <td class="cart-item-price">
+                    <span class="price">@Html.DisplayFor(model => Model[i].Price)</span>
+                </td>
+            </tr>
+            }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <span class="cartTotal">總金額:NT$@total</span>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+}else{
+    <p class="notContent">
+        查無任何訂購商品，商品可能已下架或不再販售
+    </p>
+}
+
+
+

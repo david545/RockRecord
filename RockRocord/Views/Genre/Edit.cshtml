@@ -1,0 +1,31 @@
+﻿@model RockRecord.Models.Genre
+
+
+
+@{
+    ViewBag.Title = "編輯曲風";
+}
+@if (TempData["success"]!=null)
+{
+    <div class="success">
+        曲風更新成功
+
+    </div>
+}
+<div>
+    @Html.ActionLink("回到曲風管理", "Genre","Manage")
+</div>
+<h2>更改曲風</h2>
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model=>model.Id)
+    @Html.Partial("GenreEditorTemplate",Model)
+    <input type="submit" value="確定更改" class="singal-button" />
+}
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

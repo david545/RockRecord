@@ -1,0 +1,25 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using RockRecord.Helper;
+@model RockRecord.Models.Member
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="hasMenuContent">
+    <div class="menu">
+       @Html.Partial("UserProfile", Model)
+    </div>
+    <div class="content">
+        <h3>評論過的唱片</h3>
+        <div class="userProfile-ratingList">       
+                @{
+                    var reviews = ViewData["ReviewList"] as PagedList<RockRecord.Models.Review>; 
+                }
+                @Html.Partial("UserReviewList",reviews)
+        </div>
+    </div>
+</div>
+
+

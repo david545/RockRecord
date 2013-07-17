@@ -1,0 +1,21 @@
+﻿@using RockRecord.Models
+@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<RockRecord.Models.OrderHeader>
+
+@{
+    ViewBag.Title = "訂單紀錄";
+}
+
+<h2 class="headerTitle">您的訂單記錄</h2>
+
+<div class="hasMenuContent">
+    <div class="menu">
+        @Html.Partial("AccountMenu")
+    </div>
+    <div class="content">
+        @Html.Partial("OrderList",Model)
+    </div>
+</div>
+
+

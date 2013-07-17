@@ -1,0 +1,20 @@
+﻿@model RockRecord.Models.OrderHeader
+<div>
+    @Html.LabelFor(model => Model.ContactName):@Html.DisplayFor(model => Model.ContactName)
+</div>
+<div>
+    @Html.LabelFor(model => Model.ContactAddress):
+        @Html.DisplayFor(model => Model.Zipcode)
+    @Html.DisplayFor(model => Model.City)
+    @Html.DisplayFor(model => Model.State)
+    @Html.DisplayFor(model => Model.ContactAddress)
+</div>
+<div>
+    @Html.LabelFor(model => Model.ContactPhone):@Html.DisplayFor(model => Model.ContactPhone)
+</div>
+@Html.HiddenFor(model => Model.ContactName)
+@Html.HiddenFor(model => Model.City)
+@Html.HiddenFor(model => Model.State)
+@Html.HiddenFor(model => Model.Zipcode)
+@Html.HiddenFor(model => Model.ContactAddress)
+@Html.HiddenFor(model => Model.ContactPhone)

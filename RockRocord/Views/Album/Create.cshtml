@@ -1,0 +1,32 @@
+﻿@using RockRecord.Helper
+@model RockRecord.Models.ViewModel.AlbumEditorViewModel
+
+@{
+    ViewBag.Title = "建立唱片";
+}
+<div>
+    @Html.ActionLink("回到唱片管理", "Album","Manage")
+</div>
+
+<h2>新增唱片</h2>
+<div id="albumEditor">
+    @using (Html.BeginForm("Create", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+         @Html.Partial("AlbumEditorTemplate",Model)
+
+        <div>
+            <input id="submitButton" type="submit" value="建立" />
+        </div>
+       
+    }
+</div>
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

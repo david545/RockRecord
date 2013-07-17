@@ -1,0 +1,43 @@
+﻿@model RockRecord.Models.Review
+<style type="text/css">
+    #reviewEdit textarea {
+        width: 500px;
+        height: 400px;
+    }
+</style>
+  <script type="text/javascript" src="~/Scripts/jquery.raty.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.star').raty({
+                starOff: 'star-off-big.png',
+                starOn: 'star-on-big.png',
+                size: 24,
+                path: '/Content/raty',
+                hints: ['糟糕的', '不推薦', '普通', '喜歡', '推薦'],
+                scoreName: 'Rating',
+                score: function () {
+                    return $(this).attr('data-rating');
+                }
+            });
+        });
+    </script>
+<div id="reviewEdit">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Rating):
+    </div>
+    <div>
+        <div class="star" @if(Model!=null){
+                              @:data-rating="@Model.Rating"
+                              }>
+           
+        </div>
+        @Html.ValidationMessageFor(model=>model.Rating)
+    </div>
+    <div class="editor-label">
+         @Html.LabelFor(model => model.Comment):
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Comment)
+        @Html.ValidationMessageFor(model => model.Comment)
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model RockRecord.Models.OrderHeader
+
+@{
+    ViewBag.Title = "填寫訂單資訊";
+}
+@Html.Partial("OrderNavigator")
+<h2>訂單</h2>
+
+@using (Html.BeginForm("Confirm","Order",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div id="orderForm">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactName)
+            @Html.ValidationMessageFor(model => model.ContactName)
+        </div>
+        <div id="orderForm-addressDetail" class="editor-label">
+            @Html.LabelFor(model=>model.City)
+            @Html.TextBoxFor(model=>model.City)
+            @Html.LabelFor(model=>model.State)
+            @Html.TextBoxFor(model=>model.State)
+            @Html.LabelFor(model=>model.Zipcode)
+            @Html.TextBoxFor(model=>model.Zipcode)
+            @Html.ValidationMessageFor(model=>model.City)
+            @Html.ValidationMessageFor(model=>model.State)
+            @Html.ValidationMessageFor(model=>model.Zipcode)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactAddress)
+            @Html.ValidationMessageFor(model => model.ContactAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactPhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactPhone)
+            @Html.ValidationMessageFor(model => model.ContactPhone)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Memo)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Memo)
+            @Html.ValidationMessageFor(model => model.Memo)
+        </div>
+
+        <div class="display-block">
+                <input type="submit" value="下一步" class="important-button next-button" />
+        </div>
+        
+    </div>
+}
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,107 @@
+﻿@using RockRecord.Models
+@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<RockRecord.Models.OrderHeader>
+<style type="text/css">
+    .orderStatus {
+        width: 35%;
+    }
+    .orderStatus div {
+        display: inline-block;
+    }
+</style>
+@{
+    var displayModel =ViewData["Model"]!=null?ViewData["Model"].ToString():"Normal";
+    var orderStatusFilter = ViewData["orderStatusFilter"] as SelectList;
+}
+<div>
+    @{
+        string action=Request.RequestContext.RouteData.Values["action"].ToString();
+        string controller = Request.RequestContext.RouteData.Values["controller"].ToString();
+    }
+    @Html.Action("OrderSortSelect","Order")
+    @Html.Action("OrderStatusFilter", 
+             "Order",
+             new { status = Request.QueryString["status"] != null ? Request.QueryString["status"].ToString() : "All" })
+    @using (Html.BeginForm(action, controller, FormMethod.Get, new { style = "display:inline-block" }))
+    {
+
+        string keyWord = Request.QueryString["keyWord"] != null ?
+                         Request.QueryString["keyWord"].ToString() :
+                         "";
+        
+        <span class="label">搜尋訂單編號:</span><input name="keyWord" type="text" value="@keyWord" />                
+        <input type="submit" value="搜尋" />
+     }
+</div>
+<table class="normaltable display-block">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+         @if (displayModel == "editor"){
+            <th></th>
+         }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr data-orderId="@item.Id">
+            <td class="orderStatus">
+                
+                <div class="orderStatusName">
+                    @item.OrderStatus.Name
+                </div>
+                <div class="orderStatusSelect-content">
+
+                </div>
+                    @if (displayModel == "editor")
+                    {
+
+                        @Html.ActionLink("(更改)", "OrderStatusSelect", "Order", new {id=item.Id }, new { @class = "orderStatusSelectLink" })
+                        <div class="orderStatus-button-content" style="display:none;">
+                            <button class="orderStatus-button-save" type="submit">儲存</button>
+                            <button class="orderStatus-button-cancel" type="button">取消</button>
+                        </div>
+                        <img class="ajaxLoader" src="/Content/ajaxLoader.gif" style="display:none;" />
+                    }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.ActionLink("詳細資料", "Detail", "Order", new { id = item.Id }, null)
+            </td>
+            @if (displayModel == "editor"){
+                <td>
+                    @Html.ActionLink("刪除", "Delete", "Order", new { id = item.Id }, new { @class = "manage-delete" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+@Html.Partial("Pager",(IPagedList)Model)

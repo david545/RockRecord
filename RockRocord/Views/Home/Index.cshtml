@@ -1,0 +1,46 @@
+﻿@model List<RockRecord.Models.Genre>
+@Scripts.Render("~/Scripts/jquery.itemSlider.js")
+@section header{
+    <style type="text/css">
+        .home-block {
+            border-bottom: 1px solid #D3D3D3;
+        }
+        .home-block:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $('#newArrivalAlbum-content .itemSlider').itemSlider({ itemCount: 4 });
+            $('#monthTopSellAlbum-content .itemSlider').itemSlider({ itemCount: 4 });
+        })
+</script>
+}
+
+@{
+    ViewBag.Title = "RockRecord";
+}
+
+<div class="hasMenuContent">
+    <div class="menu">
+        <h4>唱片分類</h4>
+        @Html.Action("GenreMenu","Genre")
+    </div>
+    <div class="content">
+        <div class="home-block logo-big">
+            <img src="/Content/rockrecord.png"/>
+            <p>
+                專賣搖滾樂的線上唱片行...
+                最豐富最多種類的搖滾樂
+            </p>
+        </div>
+        <h3>新發行</h3>
+        <div id="newArrivalAlbum-content" class="home-block">
+            @Html.Action("NewArrivalAlbums","Album")
+        </div>
+         <h3>最佳銷售</h3>
+        <div id="monthTopSellAlbum-content" class="home-block">
+            @Html.Action("MonthTopSellAlbums","Album")
+        </div>
+    </div>
+</div>

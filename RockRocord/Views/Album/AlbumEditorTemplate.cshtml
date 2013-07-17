@@ -1,0 +1,177 @@
+﻿@using RockRecord.Helper
+@model RockRecord.Models.ViewModel.AlbumEditorViewModel
+
+
+ @Styles.Render("~/Content/redactor.css")
+ @Styles.Render("~/Content/AlbumEditor.css")
+ @Scripts.Render("~/Scripts/albumEditor.js")
+ @Scripts.Render("~/Scripts/jquery.redactor.min.js")
+<script type="text/javascript">
+    $(function(){
+        $('#description-redactor').redactor({ minHeight: 200,placeholder:'請輸入唱片的相關描述...' });
+    })
+</script>
+        <div class="albumCoverField">
+            <div class="left">
+                @if(Model.Album!=null){
+                    @Html.AlbumCover(Model.Album.Id,300, new { @class = "photo" })
+                }else{
+                    @Html.NotCover(300, new { @class = "photo" })
+                }
+            </div>
+            <div class="right">
+                @Html.Label("albumCover", "上傳一張唱片的照片")<br />
+                <input name="albumCover" type="file" />
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.Name):
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Album.Name)
+          
+        </div>
+    
+        <div class="editor-label">
+            @Html.Label("artist", "藝術家")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.Album.ArtistId, Model.ArtistSelectList, "請選擇一個藝術家")
+            @Html.ValidationMessageFor(model=>model.Album.ArtistId)
+        </div>
+       
+        <div class="editor-label">
+            @Html.Label("category", "唱片曲風")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.Album.GenreId, Model.AlbumCatetorySelectList, "請選擇一個曲風")
+            @Html.ValidationMessageFor(model=>model.Album.GenreId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.PublicDate):
+        </div>
+        <div class="editor-field">
+           @if (Model.Album != null && Model.Album.PublicDate != null)
+           {
+               @Html.TextBox(Html.NameFor(model=>model.Album.PublicDate).ToString(),
+                             Model.Album.PublicDate.Value.ToString("yyyy/MM/dd"))
+           }else{
+               @Html.EditorFor(model=>model.Album.PublicDate)
+           }
+           
+            @Html.ValidationMessageFor(model => model.Album.PublicDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.Price):
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Album.Price)
+            @Html.ValidationMessageFor(model => model.Album.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.Stock);
+        </div>
+       
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Album.Stock)
+            @Html.ValidationMessageFor(model => model.Album.Stock)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.Songs)
+        </div>
+        <div class="editor-field">
+            <table id="songEditTable">
+                <thead>
+                    <tr>
+                        <th id="songNum">歌曲順序
+                        </th>
+                        <th id="songTitle">歌曲名稱
+                        </th>
+                        <th id="songLength">歌曲長度
+                        </th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @if (Model.Album!= null && Model.Album.Songs!=null)
+                    {
+                        var Songs=Model.Album.Songs.ToList();
+                        for (int i = 0; i < Songs.Count; i++)
+                        {
+                        <tr class="songEditRow">
+                            @Html.Hidden("Album."+Html.NameFor(model=>Songs[i].Id).ToString(),
+                                          Songs[i].Id)
+                            <td>
+                                @Html.TextBox("Album."+Html.NameFor(model =>Songs[i].SongNumber).ToString(),
+                                              Songs[i].SongNumber,
+                                              new { @class = "songNumberInput",
+                                                    data_tip="請在此輸入歌曲順序",
+                                                    data_property="SongNumber"})
+                            </td>
+                            <td>
+                                @Html.TextBox("Album." + Html.NameFor(model => Songs[i].Name).ToString(),
+                                              Songs[i].Name,
+                                              new {data_tip="請在此輸入歌曲名稱",
+                                                   data_property="Name" })
+                            </td>
+                            <td>
+                                @Html.TextBox("Album."+Html.NameFor(model => Songs[i].Length).ToString(),
+                                              secondToMiniteStr(Songs[i].Length),
+                                              new { @class = "songLengthInput",
+                                                    data_tip="請在此輸入歌曲長度 格式(mm:ss)",
+                                                    data_property="Length"})
+                            </td>
+                            <td>
+                                <button class="removeButton">刪除</button>
+                            </td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <button class="createSongButton">新增歌曲</button>
+
+            <table id="songRowTemplate" style="display: none">
+                <tbody>
+                    <tr class="songEditRow">
+                        <td>
+                            <input type="text" value="請在此輸入歌曲順序" data-property="SongNumber" data-tip="請在此輸入歌曲順序" class="empty songNumberInput" />
+                        </td>
+                        <td>
+                            <input type="text" value="請在此輸入歌曲名稱" data-property="Name" data-tip="請在此輸入歌曲名稱" class="empty" />
+                        </td>
+                        <td>
+                            <input  type="text" data-property="Length" value="請在此輸入歌曲長度 格式(mm:ss)" data-tip="請在此輸入歌曲長度 格式(mm:ss)" class="empty songLengthInput" />
+                        </td>
+                        <td>
+                            <button class="removeButton">刪除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            @Html.ValidationMessageFor(model => model.Album.Songs)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Album.Description):
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Album.Description, new { id = "description-redactor" })
+            @Html.ValidationMessageFor(model => model.Album.Description)
+        </div>
+
+@functions{
+    public string secondToMiniteStr(int seconds)
+    {
+        var min = seconds / 60;
+        var sec = seconds % 60;
+        string len = min.ToString().PadLeft(2, '0') + ":" + sec.ToString().PadLeft(2, '0');
+        return len;
+    }
+}

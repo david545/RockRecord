@@ -1,0 +1,33 @@
+﻿@model RockRecord.Models.ViewModel.AlbumEditorViewModel
+
+@{
+    ViewBag.Title = "編輯唱片";
+}
+
+@if (TempData["success"]!=null)
+{
+    <div class="success">
+        唱片更新成功
+
+    </div>
+}
+<div>
+    @Html.ActionLink("回到唱片管理", "Album","Manage")
+</div>
+
+<h2>修改唱片@(Html.ActionLink(Model.Album.Name,"Detail","Album",new{id=Model.Album.Id},null))的資料</h2>
+
+<div id="albumEditor">
+    @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+         @Html.HiddenFor(model=>model.Album.Id)
+         @Html.Partial("AlbumEditorTemplate", Model)
+
+        <div>
+            <input id="submitButton" type="submit" value="確定更改" />
+        </div>
+    }
+</div>
