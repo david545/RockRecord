@@ -7,9 +7,9 @@
         $('#genre-dropdownMenu')
             .hover(function () {
                        if ($('#genre-dropdownMenu .subMenu').css('display') == 'none') {
-                           $('#genre-dropdownMenu .subMenu').fadeIn();
+                           $('#genre-dropdownMenu .subMenu').fadeIn('fast');
                        }
-                 },function(){$('#genre-dropdownMenu .subMenu').fadeOut(); }
+                 },function(){$('#genre-dropdownMenu .subMenu').fadeOut('fast'); }
              );
     })
 </script>
@@ -23,7 +23,7 @@
             }
         </div>
         <div id="loginbar">
-            @Html.ImageLink("Index", "Home", "/Content/rockrocrd-small.png", null, new { @class = "navItem" })
+            @Html.ImageLink("Index", "Home", "/Content/rockrecord-small.png", null, new { @class = "navItem" })
             <ul id="genre-dropdownMenu" class="navItem">
                 <li>
                     <a href="#">唱片分類</a>

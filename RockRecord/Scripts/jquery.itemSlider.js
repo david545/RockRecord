@@ -3,8 +3,10 @@
         var settings = $.extend({
             itemCount: 5,
             itemWidth: 150,
+            itemHeight: 230,
             itemMargin: 10,
-            hover: function () { $(this).toggleClass('hover'); }
+            hoverIn: function () { $(this).toggleClass('hover'); },
+            hoverOut: function () { $(this).toggleClass('hover'); }
         }, options || {})
 
         function getSliderWidth() {
@@ -33,7 +35,7 @@
         context.addClass('sliderItemList')
                .css({
                    position: 'relative',
-                   'min-height': '250px'
+                   height: settings.itemHeight
                })
                .wrap(sliderLayout)
                .find('li')
@@ -42,10 +44,11 @@
                        left: index * (settings.itemWidth + settings.itemMargin) + settings.itemMargin,
                        position: 'absolute',
                        width: settings.itemWidth,
+                       height:settings.itemHeight,
                        display: 'inline-block'
                    })
                })
-               .hover(settings.hover)
+               .hover(settings.hoverIn,settings.hoverOut)
                .closest('div.sliderLayout')
                .append(createArrow());
 

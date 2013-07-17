@@ -1,7 +1,7 @@
 ﻿@model RockRecord.Models.Review
 
 @{
-    ViewBag.Title = "評論"+Model.Album.Name;
+    ViewBag.Title = "評論" + ViewData["AlbumTitle"].ToString();
 }
 
 

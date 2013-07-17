@@ -150,7 +150,6 @@
     <Compile Include="Filters\AllowViewOrderAttribute.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
-    <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -392,11 +391,10 @@
     <Content Include="Content\raty\star-off-big.png" />
     <Content Include="Content\raty\star-on-big.png" />
     <Content Include="Content\redactor.css" />
-    <Content Include="Content\rockrocrd-middle.png" />
-    <Content Include="Content\rockrocrd-small.png" />
-    <Content Include="Content\rockrocrd.ico" />
+    <Content Include="Content\rockrecord-middle.png" />
+    <Content Include="Content\rockrecord-small.png" />
+    <Content Include="Content\rockrecord.ico" />
     <Content Include="Content\Search.css" />
-    <Content Include="Content\search.png" />
     <Content Include="Content\RockRecord.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\sprite-stars.png" />
@@ -460,7 +458,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="Content\rockrocrd.png" />
+    <Content Include="Content\rockrecord.png" />
     <Content Include="Scripts\manageOrder.js" />
     <Content Include="Scripts\jquery.redactor.min.js" />
     <Content Include="Views\Global.asax" />
@@ -511,7 +509,6 @@
     <Content Include="Views\Member\Login.cshtml" />
     <Content Include="Views\Artist\Albums.cshtml" />
     <Content Include="Views\Review\Create.cshtml" />
-    <Content Include="Views\Background\Create.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Shared\Navigater.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
