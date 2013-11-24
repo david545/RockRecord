@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace RockRecord.Models
 {
@@ -19,6 +20,7 @@ namespace RockRecord.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
 
     }

@@ -13,10 +13,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/jquery-ui-1.9.2.js");
     @Scripts.Render("~/Scripts/rockrecord-site.js")
+    <script type="text/javascript" src="~/Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular-resource.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/app/common/service.js"></script>
     @RenderSection("header",false)
 </head>
-<body>
-    @Html.Action("Navigater","Shared")
+<body id="ng-app" data-ng-app="front">
+    @Html.Action("Navigater", "Shared")
 
     <div class="main">
         @RenderBody()

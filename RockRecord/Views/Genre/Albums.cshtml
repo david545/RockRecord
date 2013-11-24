@@ -5,6 +5,11 @@
 @{
     ViewBag.Title = ViewData["Genre"].ToString();
 }
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/app/controllers/albumListController.js"></script>
+}
+
 @section header{
     <style type="text/css">
         .genre-header 
@@ -29,10 +34,16 @@
         </div>
     </div>
     <div class="hasMenuContent">
-    <div class="menu">
-        <h4>唱片分類</h4>
-        @Html.Action("GenreMenu")
-    </div>
+        <div ng-controller="genreMenuController" class="menu">
+            <h4>唱片分類</h4>
+            <ul ng-repeat="item in genres track by $index">
+                <li>
+                    <a ng-href="/Genre/Albums/{{item.Id}}">
+                        {{item.Name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
     <div class="content">
 
         @Html.Partial("AlbumList",Model)
