@@ -9,13 +9,19 @@
     @Styles.Render("~/Content/themes/base/jquery-ui.css")
     @Styles.Render("~/Content/RockRecord.css")
     @Styles.Render("~/Content/PagedList.css")
+    @Styles.Render("~/Content/angularUI.css")
+    @Styles.Render("~/Content/loading-bar.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/jquery-ui-1.9.2.js");
+    @Scripts.Render("~/Scripts/jquery-ui-1.9.2.js")
     @Scripts.Render("~/Scripts/rockrecord-site.js")
     <script type="text/javascript" src="~/Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular-route.min.js"></script>
     <script type="text/javascript" src="~/Scripts/angular-resource.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/app/common/service.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular-animate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/loading-bar.js"></script>
+    <script type="text/javascript" src="~/app/common/service.js"></script>
+    <script type="text/javascript" src="~/app/common/directive.js"></script>
     @RenderSection("header",false)
 </head>
 <body id="ng-app" data-ng-app="front">

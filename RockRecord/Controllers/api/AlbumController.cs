@@ -12,11 +12,12 @@ namespace RockRecord.Controllers.api
 {
     public class AlbumController : BaseController
     {
-        public IPagedList<Album> Get(int genreId, int page, int size)
+        public PageListViewModel<Album> Get(int genreId, int page, int size)
         {
+            System.Threading.Thread.Sleep(700);
             var albums = db.Albums.Where(a => a.GenreId == genreId).OrderByDescending(a => a.PublicDate).ToPagedList(page, size);
 
-            return albums;
+            return new PageListViewModel<Album> { Items = albums, Size = albums.PageSize, Total = albums.TotalItemCount };
         }
 
     }

@@ -1,0 +1,47 @@
+﻿
+<div class="list">
+    <div class="list-item albumList-item" ng-repeat="album in model.Items track by $index">
+        <div class="list-item-left">
+            <img ng-src="/Image/GraphicsAlbumCover?id={{album.Id}}&size=160" />
+            <!--@Html.AlbumCover(Model.Id, 160, new { @class = "list-img" })-->
+        </div>
+        <div class="list-item-right">
+            <div>
+                <div>
+                    <a ng-href="#" class="list-item-AlbumTitle">
+                        {{album.Name}}
+                    </a>
+                    by
+                    <a href="#">
+                        {{album.Artist.Name}}
+                    </a>
+                </div>
+                {{album.AlbumTitle}}
+            </div>
+            <div>
+                <span class="rating" stars="{{album.Rating}}"></span>
+                <span class="label">({{album.Reviews.Count}})</span>
+            </div>
+
+            <div>
+                <!--
+                <span class="label">@Html.DisplayNameFor(modelItem => modelItem.PublicDate):</span>
+                @if (Model.PublicDate.HasValue)
+                {
+                @Model.PublicDate.Value.ToString("yyyy/MM/dd")
+                }
+                else
+                {
+                @:-
+                }-->
+            </div>
+            <div>
+                <!--
+                <span class="label">@Html.DisplayNameFor(model=>model.Price):</span>
+                <span class="price">@Html.DisplayFor(model=>model.Price)</span>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<pager total-items="model.Total" on-change-page="getData(page)"></pager>

@@ -9,12 +9,16 @@
             border-bottom: none;
         }
     </style>
+    <script type="text/javascript" src="~/app/front/config.js"></script>
+    <script type="text/javascript" src="~/app/front/controllers/genreMenuController.js"></script>
+    <script type="text/javascript" src="~/app/front/controllers/albumListController.js"></script>
+    <!--
     <script type="text/javascript">
         $(function(){
             $('#newArrivalAlbum-content .itemSlider').itemSlider({ itemCount: 4 });
             $('#monthTopSellAlbum-content .itemSlider').itemSlider({ itemCount: 4 });
         })
-</script>
+</script>-->
 }
 
 @{
@@ -22,25 +26,34 @@
 }
 
 <div class="hasMenuContent">
-    <div class="menu">
+    <div ng-controller="genreMenuController" class="menu">
         <h4>唱片分類</h4>
-        @Html.Action("GenreMenu","Genre")
+        <ul ng-repeat="item in genres track by $index">
+            <li>
+                <a ng-href="/Albums/{{item.Id}}">
+                    {{item.Name}}
+                </a>
+            </li>
+        </ul>
     </div>
-    <div class="content">
-        <div class="home-block logo-big">
-            <img src="/Content/rockrecord.png"/>
-            <p>
-                專賣搖滾樂的線上唱片行...
-                最豐富最多種類的搖滾樂
-            </p>
-        </div>
-        <h3>新發行</h3>
-        <div id="newArrivalAlbum-content" class="home-block">
-            @Html.Action("NewArrivalAlbums","Album")
-        </div>
-         <h3>最佳銷售</h3>
-        <div id="monthTopSellAlbum-content" class="home-block">
-            @Html.Action("MonthTopSellAlbums","Album")
+        <div class="content">
+            <ng-view></ng-view>
+            <!--
+            <div class="home-block logo-big">
+                <img src="/Content/rockrecord.png"/>
+                <p>
+                    專賣搖滾樂的線上唱片行...
+                    最豐富最多種類的搖滾樂
+                </p>
+            </div>
+            <h3>新發行</h3>
+            <div id="newArrivalAlbum-content" class="home-block">
+                @Html.Action("NewArrivalAlbums","Album")
+            </div>
+             <h3>最佳銷售</h3>
+            <div id="monthTopSellAlbum-content" class="home-block">
+                @Html.Action("MonthTopSellAlbums","Album")
+            </div>
+                -->
         </div>
     </div>
-</div>

@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 namespace RockRecord.Models
 {
     [DisplayName("唱片資訊")]
@@ -19,6 +20,7 @@ namespace RockRecord.Models
         [Required(ErrorMessage="請選擇唱片類型")]
         public int GenreId { get; set; }
 
+        [JsonIgnore]
         [DisplayName("藝術家")]
         [ForeignKey("ArtistId")]
         public virtual Artist Artist { get; set; }
@@ -47,7 +49,10 @@ namespace RockRecord.Models
         public int Price { get; set; }
 
         [DisplayName("歌曲")]
+        [JsonIgnore]
         public virtual ICollection<Song> Songs { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Review> Reviews { get; set; }
 
         [DisplayName("庫存")]

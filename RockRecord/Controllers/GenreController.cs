@@ -19,6 +19,7 @@ namespace RockRecord.Controllers
             return View();
         }
 
+        /*
         public ActionResult Albums(int id, int p = 1, AlbumSort sort = AlbumSort.ByDateHightToLow)
         {
             var category = db.Genres.Find(id);
@@ -29,7 +30,7 @@ namespace RockRecord.Controllers
                 return View(albums.ToPagedList(pageNumber: p, pageSize: 10));
             else
                 return HttpNotFound();
-        }
+        }*/
 
         [Administrator]
         public ActionResult Create()

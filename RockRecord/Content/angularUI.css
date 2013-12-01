@@ -1,0 +1,29 @@
+﻿.ngui-pager{
+    list-style: none;
+}
+
+.ngui-pager li{
+    display: inline-block;
+}
+
+.ngui-pager li a{
+    padding: 7px;
+    margin-right: 5px;
+    border:1px solid #E1E1E1;
+    color: blue;
+}
+
+.ngui-pager li a:hover{
+    color: #E1E1E1;
+    background-color: blue;
+}
+
+.ngui-pager li.active a {
+    cursor: default;
+    background-color: #E1E1E1;
+}
+
+.ngui-pager li.active a:hover {
+    color:blue;
+}
+
